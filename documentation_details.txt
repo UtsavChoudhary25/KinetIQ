@@ -1,0 +1,48 @@
+DOCUMENTATION DETAILS: DATASET USED & TRAINING/VALIDATION APPROACH
+Application: Kinetiq (com.utsav.kinetiq)
+
+================================================================================
+1. DATASET USED
+(Name/source of dataset, size, and how it was collected or sourced)
+================================================================================
+
+No proprietary or custom dataset was collected, curated, or utilized for training a new machine learning model from scratch in this project. Because the application is designed to leverage state-of-the-art, pre-trained AI services, the traditional requirement for a massive, static training dataset was bypassed.
+
+Instead of a static dataset, the application operates on dynamic, real-time data using two primary Google-provided AI/ML ecosystems:
+
+A. Generative AI (Google Gemini API):
+- Source/Model: The app utilizes the Google Gemini API (a pre-trained foundational Large Language Model) to handle all generative AI tasks and reasoning capabilities.
+- Data Collection & Flow: The "dataset" in this context consists of dynamic user inputs (prompts, queries, and context) generated at runtime. This data is not collected or stored as a dataset by our application; it is sent securely to the Gemini API endpoint to generate contextual responses.
+
+B. On-Device Machine Learning (Google ML Kit):
+- Source/Model: For computer vision and biomechanical tracking, the app integrates Google ML Kit's Accurate Pose Detection model. This is a pre-trained, on-device machine learning model provided by Google Play Services.
+- Data Collection & Flow: The input data consists of live, continuous camera frame streams captured directly by the user's Android device.
+- Privacy & Sourcing: Because ML Kit processes the camera feed entirely on-device, video frames are never transmitted to a cloud server, nor are they recorded or saved as a dataset. This ensures zero data-collection overhead and maximizes user privacy while providing real-time pose landmarks (e.g., joint coordinates).
+
+
+================================================================================
+2. TRAINING & VALIDATION APPROACH
+(Describe train/test split, evaluation metrics, and validation results so far)
+================================================================================
+
+Because the architecture relies entirely on pre-trained managed services (Gemini and ML Kit), the project did not involve custom model training, fine-tuning, epoch adjustments, or traditional train/validation data splitting. Consequently, standard ML evaluation metrics (such as loss curves, precision/recall, or F1 scores) are not applicable to our development lifecycle.
+
+Instead, our approach to "training" and "validation" was adapted for prompt engineering and systems integration:
+
+A. "Training" Equivalent: Prompt Engineering & Output Structuring
+Rather than tuning model weights, the generative AI was "tuned" via rigorous prompt engineering.
+- Structured Output: To ensure the Gemini API integrates flawlessly with the app's native UI, the system prompts were strictly designed to force the LLM to return data in structured JSON format.
+- Schema Enforcement: By forcing JSON outputs, we ensured the app's data layer could reliably parse the AI's response into Kotlin data classes without crashing or encountering string-parsing errors, which is critical for maintaining a stable mobile application.
+
+B. Validation & Evaluation Approach
+Our evaluation metrics focused on system reliability, UI responsiveness, and integration success rather than model accuracy:
+- Functional Testing: We conducted extensive manual and functional verification of the integrated features to ensure the Gemini responses and the ML Kit pose coordinates synchronized correctly within the application state.
+- Environment Validation: Validation was performed across two primary environments to ensure hardware and software compatibility:
+  1. Physical Android Device: To validate the real-world performance, camera latency, and thermal impact of running ML Kit's Accurate Pose Detection on-device.
+  2. Android Studio Emulator: To validate API network calls, JSON parsing, and UI rendering across different virtual screen configurations.
+- UI/UX Validation: We verified the adaptability of the Jetpack Compose and Material 3 components. This included testing the responsiveness of scrollable content areas, Card layouts, lists, and horizontal paging systems to ensure the AI-generated content and pose data did not break the UI flow on different screen dimensions.
+
+C. Validation Results So Far
+- The application (Version 1.0, SDK 26-35) successfully parses dynamic JSON responses from the Gemini API and renders them cleanly into the Jetpack Compose UI.
+- The ML Kit integration successfully captures and draws real-time pose landmarks over the camera preview without significant frame drops on the tested physical device.
+- The system has proven stable during functional testing, effectively demonstrating the feasibility of combining cloud-based Generative AI with on-device Vision ML in a modern Android architecture.

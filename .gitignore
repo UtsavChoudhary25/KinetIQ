@@ -1,0 +1,30 @@
+# Gradle build files
+*.iml
+.gradle
+/build
+/*/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Local configuration & keys
+local.properties
+
+# IDE & Editor files
+.idea/
+.idea
+.DS_Store
+
+# Kotlin & Agent artifacts
+.kotlin/
+.artifacts/
+*.log
+
+# Android Studio temporary files
+*.ap_
+*.dex
+*.class
+
+# Signing files
+*.jks
+*.keystore

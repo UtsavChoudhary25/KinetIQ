@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "965594446504",
+    "project_id": "kinetiq-bc327",
+    "storage_bucket": "kinetiq-bc327.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:965594446504:android:db7019b407827294b4609d",
+        "android_client_info": {
+          "package_name": "com.utsav.kinetiq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA28jRwW_NHD6nRdCt814YzyKt30eabEPk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
